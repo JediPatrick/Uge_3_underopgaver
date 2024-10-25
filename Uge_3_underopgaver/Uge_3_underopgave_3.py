@@ -78,12 +78,11 @@ def underOpgaveTre():
                 if error[0] == "":
                     validRow = {'customer_id': row['customer_id'], 'name': row['name'], 'email': row['email'], 'purchase_amount': row['purchase_amount']}
                     data.append(validRow)
-                    print(f"CustomerId: {row['customer_id']}, Name: {row['name']}, Email: {row['email']}, Purchase amount: {row['purchase_amount']}  ")
                 else: 
                     if error[1] == "Error":
                         logging.error(f'Error in line {row_number} error: {error[0]}')
                     elif error[1] == "Warn": 
-                        logging.error(f'Data is not validin in line {row_number}. Reason: {error[0]}')
+                        logging.warning(f'Data is not validin in line {row_number}. Reason: {error[0]}')
         if len(data) > 0:
             fieldnames = ['customer_id', 'name', 'email', 'purchase_amount']
             with open('output_data.csv', mode='w', newline='') as file:
@@ -93,3 +92,4 @@ def underOpgaveTre():
                 
     else:
         logging.warning("File does not exist.")
+    print("please check logfile")
